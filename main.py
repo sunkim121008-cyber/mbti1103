@@ -144,7 +144,7 @@ else:
     mbti += "T" if res["TF"] >= 0 else "F"
     mbti += "J" if res["JP"] >= 0 else "P"
     
-    result_data = RESULTS[mbti]
+    result_data = RESULTS.get(mbti, {"title": "알 수 없음", "theme": "기본 테마", "desc": "데이터가 없습니다."})
     
     # 결과 출력
     st.markdown(f"""
@@ -161,9 +161,10 @@ else:
     </div>
     """, unsafe_allow_html=True)
     
+    st.markdown("<br>", unsafe_allow_html=True)
     if st.button("테스트 다시하기"):
         st.session_state.step = 0
         st.session_state.scores = {"EI": 0, "SN": 0, "TF": 0, "JP": 0}
         st.rerun()
 
-st.markdown("<br><p style='text-align: center; color: #ccc; font-size: 10px;'>Developed with S
+st.markdown("<br><p style='text-align: center; color: #ccc; font-size: 10px;'>Developed with Streamlit & Heart</p>", unsafe_allow_html=True)
